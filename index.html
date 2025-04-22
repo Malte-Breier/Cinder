@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cinder</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class ="light-mode">
+        <div id="app">
+            <header>
+                <h1>Cinder 😻</h1>
+                <button id="modeToggle">Switch to Dark Mode</button>
+            </header>
+
+            <div id="catImageContainer">
+                <img id="catImage" src="" alt="Cat Image" width="300">
+            </div>
+
+            <div class="buttons">
+                <button class="button like" id="likeButton">♥️</button> <!-- Heart for Like -->
+                <button class="button dislike" id="dislikeButton">❌</button> <!-- X for Dislike -->
+                <button id="resetButton" style="display: none;">Reset Cats 😼</button>
+            </div>
+
+            <div id="statusMessage"></div> <!-- Shows a Message when no more Cats-->
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
