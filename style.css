@@ -94,3 +94,34 @@ button:hover {
     height: 100%;
     object-fit: cover;
 }
+
+/* Swipe Animations */
+
+.swipe-left {
+    transform: translateX(-400px) rotate(-20deg);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.swipe-right {
+    transform: translateX(400px) rotate(20deg);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Pop in Animation */
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#catImage.pop-in {
+    animation: popIn 0.3s ease;
+}

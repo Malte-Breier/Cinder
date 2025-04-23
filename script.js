@@ -33,6 +33,9 @@ function loadNextImage() {
     } else {
         const nextImage = currentImages.pop();
         catImage.src = nextImage;
+        catImage.classList.remove('pop-in'); //restart animation
+        void catImage.offsetWidth; //force reflow
+        catImage.classList.add('pop-in');
     }
 }
 
@@ -62,6 +65,54 @@ modeToggle.addEventListener('click', () => {
         modeToggle.innerText = "Switch to Dark Mode";
     }
 });
+
+let startX = 0;
+let isDragging = false;
+
+function handleSwipe(diffX) {
+    if (diffX > 100) {
+        // Swipe Right → Like
+        catImage.classList.add('swipe-right');
+        setTimeout(() => {
+            catImage.classList.remove('swipe-right');
+            likeButton.click();
+        }, 300);
+    } else if (diffX < -100) {
+        // Swipe Left → Dislike
+        catImage.classList.add('swipe-left');
+        setTimeout(() => {
+            catImage.classList.remove('swipe-left');
+            dislikeButton.click();
+        }, 300);
+    }
+}
+
+// MOUSE SUPPORT
+catImage.addEventListener('mousedown', (e) => {
+    startX = e.clientX;
+    isDragging = true;
+});
+
+document.addEventListener('mouseup', (e) => {
+    if (!isDragging) return;
+    const diffX = e.clientX - startX;
+    handleSwipe(diffX);
+    isDragging = false;
+});
+
+// TOUCH SUPPORT
+catImage.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+});
+
+catImage.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
+    const diffX = e.changedTouches[0].clientX - startX;
+    handleSwipe(diffX);
+    isDragging = false;
+});
+
 
 loadNextImage();
 
